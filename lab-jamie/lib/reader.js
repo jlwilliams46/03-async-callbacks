@@ -3,11 +3,11 @@
 const fs = require('fs');
 let i = 0;
 
-module.exports = (paths, callback) => {
+module.exports = (filePath, callback) => {
   do {
-    fs.readFile(paths[i], (err, data) => {
+    fs.readFile(filePath[i], (err, data) => {
       return callback(err) ? callback(null, data.toString()) : undefined;
     });
     i++;
-  } while (i < paths.length);
+  } while (i < filePath.length);
 };
