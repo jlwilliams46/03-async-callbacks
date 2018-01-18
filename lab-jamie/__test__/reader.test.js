@@ -10,6 +10,7 @@ describe('reader', () => {
       done();
     });
   });
+  
   test('ensure the reader function correctly resolves mapped string data for an array of file paths', (done) => {
     reader([`${__dirname}/assets/dj1.txt`,`${__dirname}/assets/dj2.txt`, `${__dirname}/assets/dj3.txt`], (err, data) => {
       expect(err).toBeNull();
