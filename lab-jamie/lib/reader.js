@@ -1,13 +1,21 @@
 'use strict';
 
+const reader = module.exports = {};
 const fs = require('fs');
-let i = 0;
+const arr = [];
 
-module.exports = (filePath, callback) => {
-  do {
-    fs.readFile(filePath[i], (err, data) => {
-      return callback(err) ? callback(null, data.toString()) : undefined;
+reader.booyah = (paths, cb) => {
+  fs.readFile(paths[0], (error, data) => {
+    if (error) cb(error);
+    arr.push(data.toString());
+    fs.readFile(paths[1], (error, data) => {
+      if (error) cb(error);
+      arr.push(data.toString());
+      fs.readFile(paths[2], (error, data) => {
+        if (error) cb(error);
+        arr.push(data.toString());
+        cb(null, arr);
+      });
     });
-    i++;
-  } while (i < filePath.length);
+  });
 };
