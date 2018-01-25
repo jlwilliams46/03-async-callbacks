@@ -11,7 +11,7 @@ describe('Array Validation', () => {
 });
 
 describe('Array Validation', () => {
-  it('should return the strings in the same order', function () {
+  it('should return the strings in the same order', () => {
     return reader.booyah(right, (err, x) => {
       expect(typeof x).toEqual(true);
     });
