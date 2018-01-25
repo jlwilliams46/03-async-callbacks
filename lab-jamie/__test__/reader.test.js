@@ -1,21 +1,27 @@
 'use strict';
 
-const reader = require('../lib/reader.js');
+const reader = require('../lib/reader');
+const right = [`${__dirname}/../assets/dj1.txt`, `${__dirname}/../assets/dj2.txt`, `${__dirname}/../assets/dj3.txt`];
+const wrong = [`${__dirname}/../toy_story.txt`, `${__dirname}/../the_swan_princess.txt`, `${__dirname}/../mulan.txt`];
 
-describe('reader', () => {
-  test('ensure the reader function rejects errors with invalid file paths', (done) => {
-    reader([`${__dirname}/assets/dj1.txt`,`${__dirname}/assets/dj2.txt`, `${__dirname}/assets/dj3.txt`], (err, data) => {
-      expect(err).not.toBeNull();
-      expect(data).toBeUndefined();
-      done();
+describe('Array Validation', () => {
+  it('should check to see if paths is a valid array', () => {
+    expect(Array.isArray(right)).toBe(true);
+  });
+});
+
+describe('Array Validation', () => {
+  it('should return the strings in the same order', function () {
+    return reader.booyah(right, (err, x) => {
+      expect(typeof x).toEqual(true);
     });
   });
-  
-  test('ensure the reader function correctly resolves mapped string data for an array of file paths', (done) => {
-    reader([`${__dirname}/assets/dj1.txt`,`${__dirname}/assets/dj2.txt`, `${__dirname}/assets/dj3.txt`], (err, data) => {
-      expect(err).toBeNull();
-      expect(data).toEqual(['What do you call a fake noodle? An Impasta.', 'How does a penguin build it\'s house? Igloos it together.', 'Why did the coffee file a police report? It got mugged.']);      
-      done();
+});
+
+describe('Incorrect File Paths', () => {
+  test('should reject name errors in the file paths', () => {
+    reader.booyah(wrong, (err) => {
+      expect(err).not.toBeNull();
     });
   });
 });
